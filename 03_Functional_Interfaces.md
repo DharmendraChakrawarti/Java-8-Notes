@@ -4,6 +4,53 @@
 
 ---
 
+## 🧠 Theory – Understanding Functional Interfaces
+
+### What is it in Simple Words?
+A functional interface is like a **contract** that says: *"I have exactly ONE job to do."* Since there's only one job, Java can figure out what you mean when you write a lambda.
+
+### Real-Life Analogy – Kitchen Appliances 🍳
+Think of kitchen appliances:
+- **Mixer** → has ONE job: blend things. You give it ingredients (input), it blends them (action).
+- **Toaster** → has ONE job: toast bread. You put bread in (input), toast comes out (output).
+- **Microwave** → has ONE job: heat food. You put cold food in (input), hot food comes out (output).
+
+Each appliance has **one main function**. Similarly, a functional interface has **one abstract method**.
+
+Now think of this:
+| Kitchen Tool | Functional Interface | Lambda |
+|-------------|---------------------|--------|
+| Mixer (blend things) | `Consumer<T>` (accept & use input) | `item -> blend(item)` |
+| Toaster (bread → toast) | `Function<T, R>` (transform input to output) | `bread -> toast(bread)` |
+| Food Tester (is it cooked?) | `Predicate<T>` (test & return yes/no) | `food -> food.isCooked()` |
+| Vending Machine (get snack) | `Supplier<T>` (give output, no input) | `() -> new Snack()` |
+
+### Real-Life Analogy – Office Roles 🏢
+Think about office employees:
+| Role | Does What | Like Which Interface? |
+|------|----------|----------------------|
+| **Security Guard** | Checks if you have an ID → YES/NO | `Predicate<T>` |
+| **Translator** | Takes English → gives Hindi | `Function<T, R>` |
+| **Announcer** | Takes a message → announces it (no return) | `Consumer<T>` |
+| **Water Cooler** | You just press button → gives water (no input needed) | `Supplier<T>` |
+
+### Why Only ONE Abstract Method?
+Because **lambda expressions need exactly one method to implement**. If an interface had 2 abstract methods, Java wouldn't know which one the lambda is for!
+
+```
+// ✅ ONE abstract method = Lambda knows what to implement
+interface Greet { void sayHi(String name); }
+Greet g = name -> System.out.println("Hi " + name);
+
+// ❌ TWO abstract methods = Lambda is confused! Which one?
+interface BadInterface { 
+    void method1();
+    void method2();  // Lambda can't handle this!
+}
+```
+
+---
+
 ## 3.1 What is a Functional Interface?
 
 ```java

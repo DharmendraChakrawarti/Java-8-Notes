@@ -4,6 +4,50 @@
 
 ---
 
+## 🧠 Theory – Understanding Default & Static Methods
+
+### What Changed in Java 8?
+Before Java 8, an interface was like a **blank form** – it told you what fields to fill in, but gave you no help. Now, interfaces can include **pre-filled answers** (default methods) and **utility tools** (static methods).
+
+### Real-Life Analogy – Software Update 📱
+Imagine **WhatsApp** releases a new feature: "Message Reactions" 👍
+
+- **Old way (before Java 8):** Every single phone user must manually download and install a patch for reactions to work. If even one user doesn't update → feature is broken for them.
+
+- **New way (default methods):** WhatsApp adds the feature with a **default behavior** built in. Everyone gets it automatically. If you want to customize it, you can. If not, the default works fine.
+
+**That's exactly what default methods do!** → They add new functionality to an interface without breaking existing classes.
+
+### Real-Life Analogy – USB Ports 🔌
+Think of a **USB standard** as an interface:
+- Original USB 2.0 = interface with basic methods (transfer data)
+- USB 3.0 adds a new feature: fast charging
+
+Without default methods:
+> *"Every device that uses USB must now be redesigned to support fast charging."* → Millions of devices break! 💥
+
+With default methods:
+> *"Fast charging is available by default. Old devices still work. New devices can override it for even faster charging."* → Nothing breaks! ✅
+
+### Default vs Static Methods
+
+| Feature | Default Method | Static Method |
+|---------|---------------|---------------|
+| **Real-life analogy** | A **pre-written template** in a form – use it or write your own | A **calculator on the wall** – anyone can use it, but you can't take it home |
+| **Who can use it?** | Objects of implementing classes | Called on the interface directly |
+| **Can be overridden?** | ✅ Yes | ❌ No |
+| **Inherited by child?** | ✅ Yes | ❌ No |
+| **Use case** | Add new behavior to existing interfaces | Utility/helper methods |
+
+### The Diamond Problem 💎
+When a class implements **two interfaces** that both have the same default method, Java doesn't know which one to use. This is called the **Diamond Problem** (because the inheritance diagram looks like a diamond ♦).
+
+**Solution**: The class MUST override the method and explicitly choose which version to use.
+
+> Think of it like this: Your **mom** says "Dinner at 7 PM" and your **dad** says "Dinner at 8 PM." You're confused → so **you decide** the time yourself!
+
+---
+
 ## 6.1 The Problem Before Java 8
 
 ```java

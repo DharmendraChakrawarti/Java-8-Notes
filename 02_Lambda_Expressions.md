@@ -4,6 +4,50 @@
 
 ---
 
+## 🧠 Theory – Why Lambda Expressions?
+
+### The Problem Before Java 8
+Before Java 8, if you wanted to pass a **behavior** (a piece of code) to a method, you had to create a whole class or an anonymous class. It was like writing a full letter just to say "Hello" – too much effort for a small task.
+
+### Real-Life Analogy 🍕
+Imagine you order food on **Zomato/Swiggy**:
+
+- **Old Way (Before Lambda):** You write a formal letter to the restaurant, put it in an envelope, add a stamp, go to the post office, and mail it. The letter says: "Please deliver one Paneer Butter Masala to my address." → Too much work for a simple order!
+
+- **New Way (Lambda):** You just open the app and tap "Order Now" → Quick, clean, same result!
+
+**Lambda does the same thing for code** – it removes all the unnecessary boilerplate and keeps only the important part.
+
+### Another Analogy – TV Remote 📺
+Think of a **TV remote**:
+- Each **button** = a small function (change channel, increase volume, mute)
+- You don't need to know the **internal wiring** – you just press the button and it works
+- Lambda is like assigning a **new action to a button** in one line: *"When I press this button, do this action"*
+
+```
+Button → Action
+(parameter) → { what to do }
+```
+
+### In Simple Words
+| Concept | Explanation |
+|---------|------------|
+| **What** | A short, nameless function |
+| **Why** | To reduce boilerplate code and write cleaner programs |
+| **When** | When you need to pass a small piece of behavior (like filtering, sorting, or processing) |
+| **Where** | Works only with **functional interfaces** (interfaces with 1 abstract method) |
+| **How** | `(inputs) -> { what to do with inputs }` |
+
+### How Lambda Works Internally
+1. Java sees a lambda expression
+2. It checks which **functional interface** matches the lambda's signature
+3. It automatically creates an **object** of that interface behind the scenes
+4. The lambda body becomes the implementation of the interface's abstract method
+
+> 🔑 **Key Insight**: Lambda doesn't create a new type – it's just a cleaner way to implement an existing interface.
+
+---
+
 ## 2.1 What is a Lambda?
 
 A **lambda expression** is a short way to write an **anonymous function** (a function without a name).
