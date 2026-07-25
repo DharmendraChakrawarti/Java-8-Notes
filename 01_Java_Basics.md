@@ -1,343 +1,433 @@
-# 1. Java Basics & OOP Refresher
-
-> Before jumping into Java 8 features, make sure your foundation is strong. This file covers the basics you need.
+# Java Learning Roadmap
 
 ---
 
-## 🧠 Theory – Why Java Basics Matter
+## Phase 1: Core Java (Beginner)
 
-### Real-Life Analogy – Building a House 🏠
-Think of learning Java like **building a house**:
-- **Data Types** = Building materials (bricks, cement, wood)
-- **Variables** = Rooms (each room holds something)
-- **Methods** = Workers (each worker does a specific job)
-- **Classes** = Blueprint (the design plan for the house)
-- **Objects** = The actual houses built from the blueprint
-- **Inheritance** = A luxury house design based on a basic house plan (reuses the basic plan + adds more)
+### 1️⃣ Java Basics
 
-You can't build a house without materials and a plan. Similarly, you can't learn Java 8 without understanding these basics!
+- **Introduction to Java** – A high‑level, object‑oriented programming language that runs on the Java Virtual Machine (JVM).
+- **JDK, JRE, JVM** –
+  - **JDK** (Java Development Kit): Tools for developing Java applications (compiler, debugger, etc.).
+  - **JRE** (Java Runtime Environment): Runtime libraries + JVM to run Java programs.
+  - **JVM** (Java Virtual Machine): Executes compiled byte‑code on any platform.
+- **Java Program Structure** – Every Java program must contain a class with a `main` method:
+  ```java
+  public class Main {
+      public static void main(String[] args) {
+          // program entry point
+          System.out.println("Hello, World!");
+      }
+  }
+  ```
+- **Compilation Process** – `javac Main.java` produces `Main.class`; run with `java Main`.
+- **Variables & Data Types** –
+  - Primitive types: `byte, short, int, long, float, double, char, boolean`.
+  - Reference types: objects such as `String`, arrays, custom classes.
+- **Type Casting** –
+  ```java
+  int i = 10;          // implicit (widening) cast to long
+  long l = i;
+  long big = 100L;
+  int narrowed = (int) big; // explicit (narrowing) cast
+  ```
+- **Operators** – Arithmetic (`+ - * / %`), relational (`> < == !=`), logical (`&& || !`), bitwise (`& | ^ ~ << >>`).
+- **User Input (Scanner)**
+  ```java
+  import java.util.Scanner;
+  
+  Scanner sc = new Scanner(System.in);
+  System.out.print("Enter your name: ");
+  String name = sc.nextLine(); // reads a full line
+  System.out.println("Hello, " + name);
+  sc.close();
+  ```
+- **Comments** – `// single line` and `/* multi‑line */`.
+- **Keywords & Identifiers** – Reserved words (`class`, `static`, `if`…) cannot be used as identifiers. Identifiers must start with a letter, `_` or `$` and can contain digits.
 
-### OOP in Simple Words
-| Pillar | Simple Meaning | Real-Life Example |
-|--------|---------------|------------------|
-| **Encapsulation** | Hide internal details, show only what's needed | ATM machine – you use buttons, you don't see the cash vault inside 🏧 |
-| **Inheritance** | Child gets properties from parent | You inherit features from your parents – eye color, height 👨‍👩‍👦 |
-| **Polymorphism** | Same action, different behaviors | "Open" – you open a door 🚪, open a book 📖, open an app 📱 – same word, different actions |
-| **Abstraction** | Show only essential features | Car dashboard – you see speed, fuel, temperature. You don't see the engine internals 🚗 |
+### 2️⃣ Control Statements
 
----
+| Statement | Syntax Example |
+|-----------|----------------|
+| `if` | `if (x > 0) System.out.println("positive");` |
+| `if‑else` | `if (x > 0) … else …` |
+| `nested if` | `if (a) { if (b) … }` |
+| `switch` | ```java
+switch(day) {
+    case 1: System.out.println("Mon"); break;
+    case 2: System.out.println("Tue"); break;
+    default: System.out.println("Other");
+}
+``` |
+| `for` loop | `for (int i = 0; i < 5; i++) System.out.println(i);` |
+| `while` loop | `while (cond) { … }` |
+| `do‑while` loop | `do { … } while (cond);` |
+| Enhanced `for` (for‑each) | `for (String s : list) System.out.println(s);` |
+| `break` / `continue` | Alters loop execution flow. |
 
-## 1.1 Data Types
-
-Java has **two categories** of data types:
-
-### Primitive Types
-| Type | Size | Example |
-|------|------|---------|
-| `byte` | 1 byte | `byte b = 10;` |
-| `short` | 2 bytes | `short s = 1000;` |
-| `int` | 4 bytes | `int num = 50000;` |
-| `long` | 8 bytes | `long l = 100000L;` |
-| `float` | 4 bytes | `float f = 3.14f;` |
-| `double` | 8 bytes | `double d = 3.14159;` |
-| `char` | 2 bytes | `char c = 'A';` |
-| `boolean` | 1 bit | `boolean flag = true;` |
-
-### Reference Types
-- `String`, `Arrays`, `Objects`, `Collections`, etc.
+### 3️⃣ Methods
 
 ```java
-String name = "Dharmendra";      // Reference type
-int[] numbers = {1, 2, 3, 4};   // Array (reference type)
-```
-
----
-
-## 1.2 Control Flow
-
-### if-else
-```java
-int age = 20;
-if (age >= 18) {
-    System.out.println("Adult");
-} else {
-    System.out.println("Minor");
-}
-```
-
-### switch
-```java
-int day = 3;
-switch (day) {
-    case 1: System.out.println("Monday"); break;
-    case 2: System.out.println("Tuesday"); break;
-    case 3: System.out.println("Wednesday"); break;
-    default: System.out.println("Other day");
-}
-```
-
-### Loops
-```java
-// for loop
-for (int i = 0; i < 5; i++) {
-    System.out.println(i);
-}
-
-// while loop
-int count = 0;
-while (count < 3) {
-    System.out.println("Count: " + count);
-    count++;
-}
-
-// enhanced for loop (for-each)
-int[] nums = {10, 20, 30};
-for (int n : nums) {
-    System.out.println(n);
-}
-```
-
----
-
-## 1.3 Methods
-
-A method is a block of code that performs a specific task.
-
-```java
-public class Calculator {
-
-    // Method with parameters and return type
+public class MathUtil {
+    // Simple addition – method declaration
     public static int add(int a, int b) {
-        return a + b;
+        return a + b; // return statement
     }
 
-    // Method with no return (void)
-    public static void greet(String name) {
-        System.out.println("Hello, " + name + "!");
+    // Overloaded method – same name, different params
+    public static int add(int a, int b, int c) {
+        return a + b + c;
     }
 
-    public static void main(String[] args) {
-        int result = add(5, 3);
-        System.out.println("Sum = " + result);  // Sum = 8
+    // Varargs – accept any number of ints
+    public static int sum(int... numbers) {
+        int total = 0;
+        for (int n : numbers) total += n;
+        return total;
+    }
 
-        greet("Dharmendra");  // Hello, Dharmendra!
+    // Recursive factorial example
+    public static long fact(int n) {
+        if (n <= 1) return 1; // base case
+        return n * fact(n - 1); // recursive call
     }
 }
 ```
+- **Method Declaration** – Visibility (`public`), `static`/instance, return type, name, parameter list.
+- **Calling** – `int r = MathUtil.add(3,4);`
+- **Overloading** – Same name, different parameter signatures.
+- **Varargs** – `int... args` collects any number of arguments.
+- **Recursion** – Function calls itself; must have a base case.
+
+### 4️⃣ Arrays
+
+```java
+// 1‑D array
+int[] nums = {1, 2, 3, 4, 5};
+
+// 2‑D array (matrix)
+int[][] matrix = {{1,2},{3,4}};
+
+// Traversal – enhanced for loop
+for (int n : nums) System.out.println(n);
+
+// Copying – System.arraycopy
+int[] copy = new int[nums.length];
+System.arraycopy(nums, 0, copy, 0, nums.length);
+
+// Sorting
+java.util.Arrays.sort(nums);
+
+// Binary search (requires sorted array)
+int idx = java.util.Arrays.binarySearch(nums, 3); // returns index of value 3
+```
+- **Array Operations** – `length`, `clone()`, `Arrays.fill(array, value)`, `Arrays.copyOf`.
+
+### 5️⃣ Strings
+
+```java
+String s = "Hello";                     // immutable literal
+StringBuilder sb = new StringBuilder(); // mutable, fast for concatenation
+sb.append("Hello");
+sb.append(' ');
+sb.append("World");
+System.out.println(sb.toString()); // prints "Hello World"
+
+// Common String methods
+int len = s.length();
+char c = s.charAt(0);
+String sub = s.substring(1, 4); // "ell"
+String upper = s.toUpperCase();
+boolean contains = s.contains("ell");
+```
+- **String Pool** – JVM caches literal strings; `==` compares references, `equals()` compares content.
+- **String vs StringBuilder vs StringBuffer** – `String` immutable, `StringBuilder` mutable (not thread‑safe), `StringBuffer` mutable and synchronized.
 
 ---
 
-## 1.4 Object-Oriented Programming (OOP)
+## Phase 2: Object‑Oriented Programming (Must‑Know)
 
-Java is built on **4 pillars of OOP**:
+### 6️⃣ Classes & Objects
 
-### 1. Encapsulation – Hide internal details
 ```java
-public class BankAccount {
-    private double balance;  // private = hidden
+public class Person {
+    // Instance variables (fields)
+    private String name; // each object has its own name
+    private int age;
 
-    public double getBalance() {       // getter
-        return balance;
+    // Static variable – shared among all Person instances
+    private static int population = 0;
+
+    // Constructor – runs when a new object is created
+    public Person(String name, int age) {
+        this.name = name; // "this" refers to current object
+        this.age = age;
+        population++; // increment static counter
     }
 
-    public void deposit(double amount) { // setter-like
-        if (amount > 0) {
-            balance += amount;
-        }
+    // Method – behavior of the object
+    public void introduce() {
+        System.out.println("Hi, I am " + name + ", " + age + " years old.");
     }
 }
 ```
-> **Key idea**: Use `private` fields + `public` getters/setters to control access.
+- **Instance Variables** – Belong to each object.
+- **Static Variables** – Belong to the class itself.
+- **Local Variables** – Declared inside methods.
+- **Constructors** – Special methods used to initialise new objects.
+- **`this` Keyword** – Reference to the current object instance.
 
-### 2. Inheritance – Reuse code from parent class
-```java
-class Animal {
-    void eat() {
-        System.out.println("This animal eats food.");
-    }
-}
+### 7️⃣ OOP Concepts
 
-class Dog extends Animal {
-    void bark() {
-        System.out.println("Dog barks!");
-    }
-}
+| Concept | Definition | Quick Example |
+|---------|------------|---------------|
+| Encapsulation | Bundle data (fields) with methods; hide internals using access modifiers. | Private fields + public getters/setters. |
+| Inheritance | Derive a new class from an existing class to reuse code. | `class Dog extends Animal {}` |
+| Polymorphism | Same operation behaves differently based on the object type. | Method overriding, interface implementation. |
+| Abstraction | Hide complex implementation, expose only essential features. | `abstract class Shape { abstract void draw(); }` |
+| Interface | Pure abstract contract; a class can implement multiple interfaces. | `interface Drivable { void drive(); }` |
 
-// Usage
-Dog dog = new Dog();
-dog.eat();  // inherited from Animal
-dog.bark(); // own method
-```
+### 8️⃣ Keywords
 
-### 3. Polymorphism – One name, many forms
-```java
-class Shape {
-    void draw() {
-        System.out.println("Drawing a shape");
-    }
-}
+- `this` – current object reference.
+- `super` – reference to superclass members.
+- `final` – cannot be overridden (methods) or subclassed (classes) or reassigned (variables).
+- `static` – belongs to class, not instance.
+- `abstract` – class or method without implementation.
+- `synchronized` – ensures exclusive lock for thread safety.
+- `volatile` – forces read/write directly to main memory (visibility across threads).
+- `transient` – field ignored during serialization.
 
-class Circle extends Shape {
-    @Override
-    void draw() {
-        System.out.println("Drawing a circle ⭕");
-    }
-}
+### 9️⃣ Access Modifiers
 
-class Square extends Shape {
-    @Override
-    void draw() {
-        System.out.println("Drawing a square 🟥");
-    }
-}
-
-// Usage – same method name, different behavior
-Shape s1 = new Circle();
-Shape s2 = new Square();
-s1.draw();  // Drawing a circle ⭕
-s2.draw();  // Drawing a square 🟥
-```
-
-### 4. Abstraction – Show only what's needed
-```java
-abstract class Vehicle {
-    abstract void start();  // no body – child MUST implement
-
-    void stop() {
-        System.out.println("Vehicle stopped.");
-    }
-}
-
-class Car extends Vehicle {
-    @Override
-    void start() {
-        System.out.println("Car started with key 🔑");
-    }
-}
-```
+| Modifier | Visibility |
+|----------|------------|
+| `public` | Anywhere (any class, any package). |
+| `protected` | Same package or subclasses (even in different packages). |
+| `private` | Only within the declaring class. |
+| (default) *package‑private* | Only within the same package. |
 
 ---
 
-## 1.5 Exception Handling
+## Phase 3: Advanced Core Java
+
+### 🔟 Exception Handling
 
 ```java
-public class ExceptionDemo {
-    public static void main(String[] args) {
-
-        // try-catch-finally
-        try {
-            int result = 10 / 0;  // ArithmeticException
-        } catch (ArithmeticException e) {
-            System.out.println("Error: Cannot divide by zero!");
-        } finally {
-            System.out.println("This always runs.");
-        }
-
-        // try-with-resources (auto-close)
-        try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
-            System.out.println(br.readLine());
-        } catch (IOException e) {
-            System.out.println("File not found!");
-        }
-    }
+try {
+    int result = 10 / 0; // ArithmeticException (unchecked)
+} catch (ArithmeticException e) {
+    System.err.println("Cannot divide by zero!");
+} finally {
+    System.out.println("Cleanup always runs.");
 }
-```
 
-### Custom Exception
-```java
+// Custom checked exception example
 class AgeException extends Exception {
-    public AgeException(String message) {
-        super(message);
-    }
+    public AgeException(String msg) { super(msg); }
 }
 
-// Usage
-public static void checkAge(int age) throws AgeException {
+void checkAge(int age) throws AgeException {
     if (age < 18) {
-        throw new AgeException("Age must be 18 or above!");
+        throw new AgeException("Age must be 18 or older.");
     }
     System.out.println("Welcome!");
 }
 ```
+- **Checked Exceptions** – Must be declared in method signature or caught (`IOException`).
+- **Unchecked Exceptions** – Subclasses of `RuntimeException`; not required to be declared (`NullPointerException`).
+- **`throw`** – Manually raise an exception.
+- **`throws`** – Declare that a method may propagate an exception.
 
----
+### 1️⃣1️⃣ Collections Framework ⭐⭐⭐
 
-## 1.6 Collections Framework (Before Java 8)
-
-### List – Ordered, allows duplicates
 ```java
-List<String> names = new ArrayList<>();
-names.add("Alice");
-names.add("Bob");
-names.add("Alice"); // duplicate allowed
-System.out.println(names); // [Alice, Bob, Alice]
+// List – ordered, allows duplicates
+List<String> list = new ArrayList<>();
+list.add("Alice");
+list.add("Bob");
+list.add("Alice"); // duplicate allowed
+
+// Set – no duplicates
+Set<Integer> set = new HashSet<>();
+set.add(1);
+set.add(1); // duplicate ignored
+
+// Map – key‑value pairs
+Map<String, Integer> map = new HashMap<>();
+map.put("Alice", 95);
+map.put("Bob", 88);
 ```
+- **Implementations** – `ArrayList`, `LinkedList`, `Vector`, `Stack`, `HashSet`, `LinkedHashSet`, `TreeSet`, `PriorityQueue`, `ArrayDeque`, `HashMap`, `LinkedHashMap`, `TreeMap`, `Hashtable`, `ConcurrentHashMap`.
+- **Core Interfaces** – `Collection`, `List`, `Set`, `Queue`, `Map`.
 
-### Set – No duplicates
-```java
-Set<String> cities = new HashSet<>();
-cities.add("Delhi");
-cities.add("Mumbai");
-cities.add("Delhi"); // ignored
-System.out.println(cities); // [Delhi, Mumbai]
-```
+### 1️⃣2️⃣ Generics
 
-### Map – Key-Value pairs
 ```java
-Map<String, Integer> scores = new HashMap<>();
-scores.put("Alice", 95);
-scores.put("Bob", 88);
-System.out.println(scores.get("Alice")); // 95
-```
-
-### Iterating Collections (Old Way)
-```java
-// Using Iterator
-Iterator<String> it = names.iterator();
-while (it.hasNext()) {
-    System.out.println(it.next());
+// Generic class example
+class Box<T> {
+    private T value;
+    Box(T v) { this.value = v; }
+    T get() { return value; }
 }
 
-// Using for-each
-for (String name : names) {
-    System.out.println(name);
-}
+Box<Integer> intBox = new Box<>(10);
+Box<String> strBox = new Box<>("Hello");
 ```
+- **Generic Methods** – Example:
+  ```java
+  public static <T> void printArray(T[] array) {
+      for (T e : array) System.out.println(e);
+  }
+  ```
+- **Wildcards** – `List<? extends Number>` (covariant), `List<? super Integer>` (contravariant).
 
----
-
-## 1.7 String Handling
+### 1️⃣3️⃣ Multithreading
 
 ```java
-String s1 = "Hello";
-String s2 = "World";
+// Extending Thread class
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Running in MyThread");
+    }
+}
 
-// Concatenation
-String s3 = s1 + " " + s2;   // "Hello World"
+// Implementing Runnable interface
+class Task implements Runnable {
+    public void run() {
+        System.out.println("Running Task");
+    }
+}
 
-// Important methods
-s1.length();          // 5
-s1.charAt(0);         // 'H'
-s1.substring(1, 3);   // "el"
-s1.toUpperCase();     // "HELLO"
-s1.equals("Hello");   // true
-s1.contains("ell");   // true
+public static void main(String[] args) throws Exception {
+    // Start thread by extending Thread
+    new MyThread().start();
 
-// StringBuilder (mutable, faster for loops)
-StringBuilder sb = new StringBuilder();
-sb.append("Hello");
-sb.append(" World");
-System.out.println(sb.toString()); // "Hello World"
+    // Start thread via Runnable
+    new Thread(new Task()).start();
+
+    // Executor framework – thread pool
+    ExecutorService pool = Executors.newFixedThreadPool(2);
+    Future<Integer> future = pool.submit(() -> {
+        Thread.sleep(300);
+        return 42;
+    });
+    System.out.println("Result from pool: " + future.get()); // 42
+    pool.shutdown();
+}
 ```
+- **Thread Lifecycle** – `NEW → RUNNABLE → BLOCKED → TERMINATED`.
+- **Synchronization** – `synchronized` keyword or `Lock` objects to avoid race conditions.
+- **Deadlock** – When two threads hold locks the other needs.
+- **Callable & Future** – Allows tasks to return results and throw checked exceptions.
+
+### 1️⃣4️⃣ File Handling
+
+```java
+// Write text to a file using try‑with‑resources
+try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"))) {
+    bw.write("Hello, file!");
+}
+
+// Read text from a file
+try (BufferedReader br = new BufferedReader(new FileReader("output.txt"))) {
+    String line;
+    while ((line = br.readLine()) != null) {
+        System.out.println(line);
+    }
+}
+
+// Object serialization example
+import java.io.*;
+
+class Person implements Serializable {
+    private String name;
+    private int age;
+    Person(String n, int a) { name = n; age = a; }
+}
+
+// Serialize
+try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.ser"))) {
+    oos.writeObject(new Person("Alice", 30));
+}
+
+// Deserialize
+try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.ser"))) {
+    Person p = (Person) ois.readObject();
+    System.out.println(p);
+}
+```
+- **Serialization** – Convert objects to a byte stream; **Deserialization** – Reconstruct objects from bytes.
+
+### 1️⃣5️⃣ Wrapper Classes & Autoboxing
+
+| Primitive | Wrapper |
+|-----------|---------|
+| `byte`    | `Byte`   |
+| `short`   | `Short`  |
+| `int`     | `Integer`|
+| `long`    | `Long`   |
+| `float`   | `Float`  |
+| `double`  | `Double` |
+| `char`    | `Character`|
+| `boolean` | `Boolean` |
+
+```java
+Integer i = 10; // autoboxing from int to Integer
+int j = i;      // auto‑unboxing back to int
+
+int sum = Integer.sum(5, 7); // static utility method
+```
+
+### 1️⃣6️⃣ Enums
+
+```java
+public enum Day {
+    MON, TUE, WED, THU, FRI, SAT, SUN
+}
+
+Day today = Day.FRI;
+System.out.println("Today is " + today);
+```
+- Enums are implicitly `static` and `final`; can have fields, constructors, and methods.
+
+### 1️⃣7️⃣ Annotations
+
+```java
+@Override // tells compiler we are overriding a method
+public String toString() { return "Person"; }
+
+@Deprecated // marks method as deprecated
+public void oldMethod() { }
+
+@SuppressWarnings("unchecked") // suppresses compiler warnings
+List raw = new ArrayList();
+```
+- **Retention Policies** – `SOURCE`, `CLASS`, `RUNTIME`.
+- **Target Elements** – `TYPE`, `METHOD`, `FIELD`, `PARAMETER`, etc.
+- **Custom Annotation Example**
+  ```java
+  import java.lang.annotation.*;
+
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.METHOD)
+  public @interface LogExecution {
+      String value() default ""; // optional attribute
+  }
+
+  class Service {
+      @LogExecution("serviceMethod")
+      public void doWork() { System.out.println("working..."); }
+  }
+  ```
 
 ---
 
-## ✅ Checklist Before Moving On
+### 📚 How to Use This Roadmap
+1. **Read each section** – Understand the concept and terminology.
+2. **Run the snippets** – Copy them into a `.java` file, compile, and execute.
+3. **Experiment** – Modify values, add new cases, combine multiple concepts.
+4. **Progression** – Master Phase 1 before moving to Phase 2, then Phase 3.
+5. **Practice questions** – After each phase, try interview‑style questions to solidify knowledge.
 
-- [ ] I can write a class with fields, constructor, and methods
-- [ ] I understand inheritance and can override methods
-- [ ] I know the difference between `ArrayList`, `HashSet`, and `HashMap`
-- [ ] I can handle exceptions using try-catch
-- [ ] I can iterate over a collection using for-each and Iterator
-
-**Next → [02_Lambda_Expressions.md](./02_Lambda_Expressions.md)**
+Happy coding! 🎉
